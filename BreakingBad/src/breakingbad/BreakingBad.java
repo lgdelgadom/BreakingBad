@@ -56,11 +56,11 @@ public class BreakingBad extends JFrame implements Runnable, KeyListener, MouseL
     private long tiempoActual;
     private long tiempoInicial;
     //Sonidos
-    private SoundClip bomb, punch;
+    //private SoundClip bomb, punch;
      //Animaciones
-    private Animacion pelotaAnim, canastaAnim, netLeft, netRight;
+    private Animacion pelotaAnim, barra;
     
-    public Basketball(){
+    public BreakingBad(){
         init();
         start();
     }
@@ -73,39 +73,38 @@ public class BreakingBad extends JFrame implements Runnable, KeyListener, MouseL
         addMouseListener(this);
         
         //SoundClips
-        bomb = new SoundClip("Explosion.wav");
-        punch = new SoundClip("punch.wav");
+        /*bomb = new SoundClip("Explosion.wav");
+        punch = new SoundClip("punch.wav");*/
         //Animaciones
 	Image bola1 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("basketball1.png"));
-	Image bola2 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("basketball2.png"));
+	/*Image bola2 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("basketball2.png"));
         Image bola3 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("basketball3.png"));
         Image bola4 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("basketball4.png"));
         Image bola5 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("basketball5.png"));
-        Image bola6 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("basketball6.png"));
+        Image bola6 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("basketball6.png"));*/
 	Image canasta1 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("net.png"));
-        Image canastaR1 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("netRight1.png"));
+        /*Image canastaR1 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("netRight1.png"));
         Image canastaR2 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("netRight2.png"));
         Image canastaL1 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("netLeft1.png"));
-        Image canastaL2 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("netLeft2.png"));
+        Image canastaL2 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("netLeft2.png"));*/
 	
 	pelotaAnim = new Animacion();
-        canastaAnim = new Animacion();
-        netLeft = new Animacion();
-        netRight = new Animacion();
+        barra = new Animacion();
+        
         
         
 	pelotaAnim.sumaCuadro(bola1, 100);
-        pelotaAnim.sumaCuadro(bola2, 100);
+        /*pelotaAnim.sumaCuadro(bola2, 100);
         pelotaAnim.sumaCuadro(bola3, 100);
         pelotaAnim.sumaCuadro(bola4, 100);
         pelotaAnim.sumaCuadro(bola5, 100);
-        pelotaAnim.sumaCuadro(bola6, 100);
+        pelotaAnim.sumaCuadro(bola6, 100);*/
 
-        canastaAnim.sumaCuadro(canasta1, 100);
-        netLeft.sumaCuadro(canastaL1, 100);
+        barra.sumaCuadro(canasta1, 100);
+        /*netLeft.sumaCuadro(canastaL1, 100);
         netLeft.sumaCuadro(canastaL2, 100);
         netRight.sumaCuadro(canastaR1, 100);
-        netRight.sumaCuadro(canastaR2, 100);
+        netRight.sumaCuadro(canastaR2, 100);*/
 
         
 
@@ -121,7 +120,7 @@ public class BreakingBad extends JFrame implements Runnable, KeyListener, MouseL
         state = 0;
         
         bola = new Bola(100, 400, pelotaAnim);
-        canasta = new Canasta(0, 0, canastaAnim);
+        canasta = new Canasta(0, 0, barra);
         canasta.setPosX(getWidth()/2 - canasta.getAncho()/2);
         canasta.setPosY(getHeight() - canasta.getAlto() - 10);
         
@@ -195,8 +194,8 @@ public class BreakingBad extends JFrame implements Runnable, KeyListener, MouseL
                 canasta.setImageIcon(netRight);
             }
             else{
-                canastaAnim.actualiza(tiempoTranscurrido);
-                canasta.setImageIcon(canastaAnim);
+                barra.actualiza(tiempoTranscurrido);
+                canasta.setImageIcon(barra);
             }
         }
     }
